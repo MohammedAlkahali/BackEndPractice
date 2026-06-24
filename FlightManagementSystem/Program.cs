@@ -21,7 +21,7 @@ namespace FlightManagementSystem
         // Now there are 5 empty lists that are exist in the memory under context.
 
 
-        public static void RegisterPassenger()
+        public static void RegisterPassenger()  // Function to add a new passenger
         {
             // To register a new passenger 
 
@@ -35,10 +35,10 @@ namespace FlightManagementSystem
             string email = Console.ReadLine();
 
             Console.Write("Enter the phone number: ");
-            int phone = int.Parse(Console.ReadLine());
+            string phone = Console.ReadLine();
 
             Console.Write("Enter the passenger passport number: ");
-            int passportNum = int.Parse(Console.ReadLine());
+            string passportNum = Console.ReadLine();
 
             Console.Write("Enter the passenger nationality: ");
             string nationality = Console.ReadLine();
@@ -59,7 +59,24 @@ namespace FlightManagementSystem
             Console.WriteLine();
             Console.WriteLine("The passenger registered successfully");
             Console.WriteLine($"The passenger ID: {passengerId}");
+        }  
+
+
+
+
+        public static void AddAircraft() // Function to add an aircraft
+        {
+            Console.Write("Enter the Aircraft model: ");
+            string model = Console.ReadLine();
+
+            Console.Write("Enter the total seat in the aircraft: ");
+            int totalSeat = int.Parse( Console.ReadLine() );
+
         }
+
+
+
+
 
         static void Main(string[] args)
         {
