@@ -58,6 +58,28 @@ namespace FlightManagementSystem
                     Console.WriteLine("Invalid input. Please enter a number.");
                     continue;   // skip the rest, show the menu again
                 }
+
+                //-------------------------------------------------------------
+                switch (Select)
+                {
+                    case 0:
+                        exit = true;
+                        Console.WriteLine("Thank you for using our System. Goodbye!");
+                        break;
+
+
+                    default:
+                        Console.WriteLine("Invalid option. Please select a valid number.");
+                        break;
+
+
+                } // Switch
+
+                Console.WriteLine("press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+
+            }
         }
     }
 }
