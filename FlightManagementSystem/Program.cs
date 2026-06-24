@@ -66,12 +66,29 @@ namespace FlightManagementSystem
 
         public static void AddAircraft() // Function to add an aircraft
         {
+            Console.WriteLine("=== Add an Aircraft ===");
+            Console.WriteLine();
+
             Console.Write("Enter the Aircraft model: ");
             string model = Console.ReadLine();
 
             Console.Write("Enter the total seat in the aircraft: ");
             int totalSeat = int.Parse( Console.ReadLine() );
 
+
+            int aircraftId = context.aircrafts.Count + 1; // To generate a new ID for the aircraft
+
+            context.aircrafts.Add(
+                new Aircraft
+                {
+                    aircraftId = aircraftId,
+                    models = model,
+                    totalSeats = totalSeat
+                }
+                );
+            Console.WriteLine();
+            Console.WriteLine("The aircraft added successfully");
+            Console.WriteLine($"The aircraft ID: {aircraftId}");
         }
 
 
