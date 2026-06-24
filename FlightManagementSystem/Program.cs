@@ -46,6 +46,18 @@ namespace FlightManagementSystem
 
                 Console.Write("   -> Select: ");
             
+                // New 
+                int Select;
+
+                try
+                {
+                    Select = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                    continue;   // skip the rest, show the menu again
+                }
         }
     }
 }
