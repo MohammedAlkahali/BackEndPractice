@@ -8,18 +8,59 @@ namespace FlightManagementSystem
         // System Stoarge (The actual storage in the memory for all the lists)
         public static FlightContext context = new FlightContext
         {
-            passengers = new List <Passenger> (),
+            passengers = new List <Passenger>  (),
 
-            pilots     = new List <Pilot>     (),
+            pilots     = new List <Pilot>      (),
 
-            aircrafts  = new List <Aircraft>  (),
+            aircrafts  = new List <Aircraft>   (),
 
-            flights    = new List <Flight>    (),
+            flights    = new List <Flight>     (),
 
-            bookings   = new List <Booking>   ()
+            bookings   = new List <Booking>    ()
         };
         // Now there are 5 empty lists that are exist in the memory under context.
-         
+
+
+        public static void RegisterPassenger()
+        {
+            // To register a new passenger 
+
+            Console.WriteLine("=== Register a new passenger ===");
+            Console.WriteLine();
+
+            Console.Write("Enter the passenger name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter the passenger email: ");
+            string email = Console.ReadLine();
+
+            Console.Write("Enter the phone number: ");
+            int phone = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter the passenger passport number: ");
+            int passportNum = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter the passenger nationality: ");
+            string nationality = Console.ReadLine();
+
+            int passengerId = context.passengers.Count + 1; // To generate a new ID for the passenger
+
+            context.passengers.Add( // To add the new passenger in the list
+                new Passenger
+                {
+                    passengerId          = passengerId,
+                    passengerName        = name,
+                    passengerEmail       = email,
+                    passengerPhone       = phone,
+                    passportNumber       = passportNum,
+                    PassengerNationality = nationality
+                }
+                );
+            Console.WriteLine();
+            Console.WriteLine("The passenger registered successfully");
+            Console.WriteLine($"The passenger ID: {passengerId}");
+        }
+
         static void Main(string[] args)
         {
             bool exit = false;
@@ -27,7 +68,7 @@ namespace FlightManagementSystem
 
             {           // Display the main menu to choose
 
-                Console.WriteLine("=============================================\r\nWELCOME TO SKY WINGS FLIGHT MANAGEMENT SYSTEM\r\n=============================================");
+                Console.WriteLine("=============================================\r\nWELCOME TO FLIGHT MANAGEMENT SYSTEM\r\n=============================================");
                 Console.WriteLine("  Please select from the main menu");
                 Console.WriteLine();
                 Console.WriteLine("   1)  Register a Passenger");
@@ -45,7 +86,7 @@ namespace FlightManagementSystem
                 Console.WriteLine(" =============================================");
 
                 Console.Write("   -> Select: ");
-            
+
                 // New 
                 int Select;
 
@@ -62,10 +103,17 @@ namespace FlightManagementSystem
                 //-------------------------------------------------------------
                 switch (Select)
                 {
+                    case 1:
+                        RegisterPassenger();
+                        break;
+
+
+
                     case 0:
                         exit = true;
                         Console.WriteLine("Thank you for using our System. Goodbye!");
                         break;
+
 
 
                     default:
@@ -73,14 +121,16 @@ namespace FlightManagementSystem
                         break;
 
 
+
                 } // Switch
 
-                Console.WriteLine("press any key to continue...");
+                Console.WriteLine();
+                Console.WriteLine(" => press any key to continue...");
                 Console.ReadKey();
                 Console.Clear();
 
-            }
-        }
-    }
-}
+            } // While
+        } // Main 
+    } // Class program
+} // Namespace
 
