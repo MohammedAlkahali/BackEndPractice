@@ -11,6 +11,6 @@ namespace FlightManagementSystem.Models
         public string passengerEmail { get; set; }  // Email address used for booking confirmation
         public string passengerPhone { get; set; }  // Contact phone number
         public string passportNumber { get; set; }  // Passport / national ID number - must be unique per passenger
-        public string PassengerNationality { get; set; }     // Country of the passenger's passport
+        public string nationality { get; set; }     // Country of the passenger's passport
     }
 }

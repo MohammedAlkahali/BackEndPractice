@@ -21,7 +21,9 @@ namespace FlightManagementSystem
         // Now there are 5 empty lists that are exist in the memory under context.
 
 
-        public static void RegisterPassenger()  // Function to add a new passenger
+
+
+        public static void RegisterPassenger()  // Function to add a new passenger 
         {
             // To register a new passenger 
 
@@ -53,7 +55,7 @@ namespace FlightManagementSystem
                     passengerEmail       = email,
                     passengerPhone       = phone,
                     passportNumber       = passportNum,
-                    PassengerNationality = nationality
+                    nationality = nationality
                 }
                 );
             Console.WriteLine();
@@ -64,7 +66,7 @@ namespace FlightManagementSystem
 
 
 
-        public static void AddAircraft() // Function to add an aircraft
+        public static void AddAircraft() // Function to add an aircraft 
         {
             Console.WriteLine("=== Add an Aircraft ===");
             Console.WriteLine();
@@ -82,8 +84,9 @@ namespace FlightManagementSystem
                 new Aircraft
                 {
                     aircraftId = aircraftId,
-                    models = model,
-                    totalSeats = totalSeat
+                    model = model,
+                    totalSeats = totalSeat,
+                    isOperational = true
                 }
                 );
             Console.WriteLine();
@@ -91,6 +94,43 @@ namespace FlightManagementSystem
             Console.WriteLine($"The aircraft ID: {aircraftId}");
         }
 
+
+
+
+        public static void RegisterPilot() // Function to add a new pilot 
+        {
+            Console.WriteLine("=== Register A Pilot ===");
+            Console.WriteLine();
+
+            Console.Write("Enter the pilot name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter the pilot phone number: ");
+            string phone = Console.ReadLine();
+
+            Console.Write("Enter the pilot license number: ");
+            string licenseNum = Console.ReadLine();
+
+            Console.Write("Enter the total flight hours: ");
+            int totalFlightHrs = int.Parse( Console.ReadLine() );
+
+            int pilotId = context.pilots.Count + 1;
+
+            context.pilots.Add(
+                new Pilot
+                {
+                    pilotId = pilotId,
+                    pilotName = name,
+                    pilotPhone = phone,
+                    licenseNumber = licenseNum,
+                    flightHours = totalFlightHrs,
+                    isAvailable = true
+                }
+            );
+
+            Console.WriteLine("The pilot registered successfully");
+            Console.WriteLine($"The pilot ID is: {pilotId}");
+        }
 
 
 
@@ -139,6 +179,18 @@ namespace FlightManagementSystem
                 {
                     case 1:
                         RegisterPassenger();
+                        break;
+
+
+
+                    case 2:
+                        AddAircraft();
+                        break;
+
+
+
+                    case 3:
+                        RegisterPilot();
                         break;
 
 
