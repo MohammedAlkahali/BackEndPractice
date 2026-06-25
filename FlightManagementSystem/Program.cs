@@ -130,7 +130,14 @@ namespace FlightManagementSystem
             string licenseNum = Console.ReadLine();
 
             Console.Write("Enter the total flight hours: ");
-            int totalFlightHrs = int.Parse( Console.ReadLine() );
+            bool isValidHours = int.TryParse(Console.ReadLine(), out int totalFlightHrs);
+
+            if (!isValidHours || totalFlightHrs < 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Invalid flight hours. Please enter a non-negative number.");
+                return;
+            }
 
             int pilotId = context.pilots.Count + 1;
 
