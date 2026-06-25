@@ -85,7 +85,15 @@ namespace FlightManagementSystem
             string model = Console.ReadLine();
 
             Console.Write("Enter the total seat in the aircraft: ");
-            int totalSeat = int.Parse( Console.ReadLine() );
+            bool isValidNumber = int.TryParse(Console.ReadLine(), out int totalSeat);
+
+            if (!isValidNumber || totalSeat <= 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Invalid seat count. Please enter a positive number.");
+                return;
+            }
+
 
 
             int aircraftId = context.aircrafts.Count + 1; // To generate a new ID for the aircraft
