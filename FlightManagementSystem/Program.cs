@@ -76,7 +76,7 @@ namespace FlightManagementSystem
 
 
 
-        public static void AddAircraft() // Function to add an aircraft 
+        public static void AddAircraft()        // Function to add an aircraft 
         {
             Console.WriteLine("=== Add an Aircraft ===");
             Console.WriteLine();
@@ -115,7 +115,7 @@ namespace FlightManagementSystem
 
 
 
-        public static void RegisterPilot() // Function to add a new pilot 
+        public static void RegisterPilot()      // Function to add a new pilot 
         {
             Console.WriteLine("=== Register A Pilot ===");
             Console.WriteLine();
@@ -160,7 +160,7 @@ namespace FlightManagementSystem
 
 
 
-        public static void ViewFlights() // Function to display all the flights 
+        public static void ViewFlights()        // Function to display all the flights 
         {
             Console.WriteLine("=== All the flights  ===");
             Console.WriteLine();
@@ -185,6 +185,134 @@ namespace FlightManagementSystem
 
 
         }
+
+
+
+
+        public static void ScheduleFlight()     // Function to schedule a flight 
+        {
+            Console.WriteLine("=== Schedule a Flight ===");
+            Console.WriteLine();
+
+            // To show only the operational aircraft
+            var operationalAircrafts = context.aircrafts.Where(a => a.isOperational).ToList();
+
+            if (operationalAircrafts.Count == 0)
+            {
+                Console.WriteLine("No operational aircraft available. Add new.");
+                return;
+            }
+
+            Console.WriteLine("Operational Aircraft:");
+            foreach (Aircraft a in operationalAircrafts)
+            {
+                Console.WriteLine($"  ID: {a.aircraftId} | {a.model} | Seats: {a.totalSeats}");
+            }
+
+            Console.Write("Enter the Aircraft ID to assign: ");
+            bool isValidAircraftId = int.TryParse(Console.ReadLine(), out int aircraftId);
+
+            Aircraft selectedAircraft = context.aircrafts
+                .FirstOrDefault(a => a.aircraftId == aircraftId && a.isOperational);
+
+            if (!isValidAircraftId || selectedAircraft == null)
+            {
+                Console.WriteLine("Invalid aircraft ID.");
+                return;
+            }
+
+            // To show only the available pilots
+            var availablePilots = context.pilots.Where(p => p.isAvailable).ToList();
+
+            if (availablePilots.Count == 0)
+            {
+                Console.WriteLine("No available pilots. Register one or wait for one to free up.");
+                return;
+            }
+
+            Console.WriteLine("Available Pilots:");
+            foreach (Pilot p in availablePilots)
+            {
+                Console.WriteLine($"  ID: {p.pilotId} | {p.pilotName} | License: {p.licenseNumber}");
+            }
+
+            Console.Write("Enter the Pilot ID to assign: ");
+            bool isValidPilotId = int.TryParse(Console.ReadLine(), out int pilotId);
+
+            Pilot selectedPilot = context.pilots
+                .FirstOrDefault(p => p.pilotId == pilotId && p.isAvailable);
+
+            if (!isValidPilotId || selectedPilot == null)
+            {
+                Console.WriteLine("Invalid or unavailable pilot ID.");
+                return;
+            }
+
+            
+            Console.Write("Enter origin: ");
+            string origin = Console.ReadLine();
+
+            Console.Write("Enter destination: ");
+            string destination = Console.ReadLine();
+
+            Console.Write("Enter departure date: ");
+            string departureDate = Console.ReadLine();
+
+            Console.Write("Enter departure time: ");
+            string departureTime = Console.ReadLine();
+
+            Console.Write("Enter ticket price: ");
+
+            bool isValidPrice = decimal.TryParse(Console.ReadLine(), out decimal ticketPrice);
+
+            if (!isValidPrice || ticketPrice <= 0)
+            {
+                Console.WriteLine("Invalid ticket price.");
+                return;
+            }
+
+            Console.Write("Enter flight duration in hours: ");
+            bool isValidDuration = int.TryParse(Console.ReadLine(), out int durationHours);
+
+            if (!isValidDuration || durationHours <= 0)
+            {
+                Console.WriteLine("Invalid flight duration.");
+                return;
+            }
+
+            // Build the Flight - seats come from the aircraft
+            int flightId = context.flights.Count + 1;
+            string flightCode = $"OA-{200 + flightId}";
+
+            context.flights.Add(
+                new Flight
+                {
+                    flightId = flightId,
+                    flightCode = flightCode,
+                    aircraftId = selectedAircraft.aircraftId,
+                    pilotId = selectedPilot.pilotId,
+                    origin = origin,
+                    destination = destination,
+                    departureDate = departureDate,
+                    departureTime = departureTime,
+                    ticketPrice = ticketPrice,
+                    availableSeats = selectedAircraft.totalSeats,
+                    status = "Scheduled",
+                    flightDurationHours = durationHours
+                }
+            );
+
+            // Pilot is now committed to this flight
+            selectedPilot.isAvailable = false;
+
+            Console.WriteLine();
+            Console.WriteLine("Flight scheduled successfully.");
+            Console.WriteLine($"Flight Code: {flightCode} | Flight ID: {flightId}");
+        }
+
+
+
+
         static void Main(string[] args)
         {
             bool exit = false;
@@ -247,6 +375,12 @@ namespace FlightManagementSystem
 
                     case 4:
                         ViewFlights();
+                        break;
+
+
+
+                    case 5:
+                        ScheduleFlight();
                         break;
 
 
