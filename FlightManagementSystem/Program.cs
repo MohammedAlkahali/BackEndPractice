@@ -83,9 +83,9 @@ namespace FlightManagementSystem
             context.aircrafts.Add(
                 new Aircraft
                 {
-                    aircraftId = aircraftId,
-                    model = model,
-                    totalSeats = totalSeat,
+                    aircraftId    = aircraftId,
+                    model         = model,
+                    totalSeats    = totalSeat,
                     isOperational = true
                 }
                 );
@@ -119,12 +119,12 @@ namespace FlightManagementSystem
             context.pilots.Add(
                 new Pilot
                 {
-                    pilotId = pilotId,
-                    pilotName = name,
-                    pilotPhone = phone,
+                    pilotId       = pilotId,
+                    pilotName     = name,
+                    pilotPhone    = phone,
                     licenseNumber = licenseNum,
-                    flightHours = totalFlightHrs,
-                    isAvailable = true
+                    flightHours   = totalFlightHrs,
+                    isAvailable   = true
                 }
             );
 
@@ -135,6 +135,31 @@ namespace FlightManagementSystem
 
 
 
+        public static void ViewFlights() // Function to display all the flights 
+        {
+            Console.WriteLine("=== All the flights  ===");
+            Console.WriteLine();
+
+            if(context.flights.Count == 0) 
+            {
+                Console.WriteLine("There are no flights available");
+                return;
+            }
+
+            foreach( Flight f in context.flights )
+            {
+                Console.WriteLine($"Flight Code:     {f.flightCode}");
+                Console.WriteLine($"Origin:          {f.origin}");
+                Console.WriteLine($"Destination:     {f.destination}");
+                Console.WriteLine($"Depature Date:   {f.departureDate}");
+                Console.WriteLine($"Depature Time:   {f.departureTime}");
+                Console.WriteLine($"Available Seats: {f.availableSeats}");
+                Console.WriteLine($"Ticket Price:    {f.ticketPrice}");
+                Console.WriteLine($"Current Status:  {f.status}");
+            }
+
+
+        }
         static void Main(string[] args)
         {
             bool exit = false;
@@ -191,6 +216,12 @@ namespace FlightManagementSystem
 
                     case 3:
                         RegisterPilot();
+                        break;
+
+
+
+                    case 4:
+                        ViewFlights();
                         break;
 
 
