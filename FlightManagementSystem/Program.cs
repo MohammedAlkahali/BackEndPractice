@@ -42,6 +42,16 @@ namespace FlightManagementSystem
             Console.Write("Enter the passenger passport number: ");
             string passportNum = Console.ReadLine();
 
+            // To make the passport unique
+            if(context.passengers.Any(p => p.passportNumber == passportNum))
+            {
+                Console.WriteLine();
+                Console.WriteLine("A passenger with this passport number is already registered.");
+                return; // To stop here and not adding a duplicated number
+            }
+
+
+
             Console.Write("Enter the passenger nationality: ");
             string nationality = Console.ReadLine();
 
@@ -61,7 +71,7 @@ namespace FlightManagementSystem
             Console.WriteLine();
             Console.WriteLine("The passenger registered successfully");
             Console.WriteLine($"The passenger ID: {passengerId}");
-        }  
+        }
 
 
 
