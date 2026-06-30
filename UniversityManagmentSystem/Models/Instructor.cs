@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace UniversityManagmentSystem.Models
@@ -9,7 +10,7 @@ namespace UniversityManagmentSystem.Models
     [Index(nameof(email), IsUnique = true)]
     public class Instructor
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
         public int instructorId {  get; set; }      // System Generated
 
@@ -28,7 +29,7 @@ namespace UniversityManagmentSystem.Models
         [Required]
         public DateTime hireDate { get; set; }      // User input
 
-        [Required]
+        [Required, Range(0, double.MaxValue)]
         public decimal salary { get; set; }         // User input
 
         [Required]
