@@ -11,7 +11,7 @@ namespace UniversityManagmentSystem.Models
         public string departmentName { get; set; }  // User input
         public string building {  get; set; }       // User input
         public decimal budget { get; set; }         // User input
-        public int headInstructorId { get; set; }   // From list
+        public int headInstructorId { get; set; }   // foreign key
 
     }
 }

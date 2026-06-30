@@ -10,8 +10,8 @@ namespace UniversityManagmentSystem.Models
         public string courseCode { get; set; }      // User input
         public string courseTitle { get; set; }     // User input
         public int creditHours { get; set; }        // User input 
-        public int departmentId { get; set; }       // From list
-        public int instructorId { get; set; }       // From list
+        public int departmentId { get; set; }       // foreign key
+        public int instructorId { get; set; }       // foreign key
         public string semesterOffered { get; set; } // User input 
     }
 }
