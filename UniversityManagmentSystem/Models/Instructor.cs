@@ -35,5 +35,12 @@ namespace UniversityManagmentSystem.Models
         [Required]
         [MaxLength(50)]
         public string academicTitle { get; set; }   // User input
+
+
+        [ForeignKey("Department")]
+        public int departmentId { get; set; } // Foreign key property
+        public Department Department { get; set; } // Navigation property
+
+        public List<Course> courses { get; set; } // Navigation property
     }
 }
