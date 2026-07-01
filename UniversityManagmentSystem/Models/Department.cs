@@ -24,7 +24,7 @@ namespace UniversityManagmentSystem.Models
         [Required, Range(0,double.MaxValue)]
         public decimal budget { get; set; }         // User input
 
-
+        [ForeignKey(nameof(Department))]
         public int? headInstructorId { get; set; }   // foreign key
 
     }

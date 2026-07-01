@@ -12,8 +12,12 @@ namespace UniversityManagmentSystem.Models
         [Required]
         public int enrollmentId { get; set; }               // System generated 
 
+        [ForeignKey(nameof(Student))]
+        [Required]
         public int studentId { get; set; }                  // foreign key
 
+        [ForeignKey(nameof(Course))]
+        [Required]
         public int courseId { get; set; }                   // foreign key
 
         [Required]
