@@ -11,7 +11,7 @@ namespace E_CommerceManagmentSystem.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required] // Data annotation 
         public int      orderId         { get; set; }   // System generated
 
-        [ForeignKey(nameof(userId)), Required]                              // Data annotation
+        [ForeignKey(nameof(User)), Required]                              // Data annotation
         public int      userId          { get; set; }   // Foreign key
 
         [Required]                                                          // Data annotation
