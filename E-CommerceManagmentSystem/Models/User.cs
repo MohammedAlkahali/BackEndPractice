@@ -44,5 +44,10 @@ namespace E_CommerceManagmentSystem.Models
 
 
         public bool isActive { get; set; } = true;               // Default value
+
+
+        public List<Review> reviews { get; set; }   // // Navigation property 
+
+        public List<Order> Orders { get; set; }   // // Navigation property 
     }
 }
