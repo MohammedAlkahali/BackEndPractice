@@ -27,5 +27,12 @@ namespace UniversityManagmentSystem.Models
         [ForeignKey(nameof(Department))]
         public int? headInstructorId { get; set; }   // foreign key
 
+
+
+        public Instructor Instructor { get; set; } // Navigation property
+
+
+        public List<Course> Courses { get; set; } // Navigation property
+
     }
 }
