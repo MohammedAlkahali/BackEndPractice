@@ -16,7 +16,7 @@ namespace UniversityManagmentSystem.Models
         [Required]
         public int studentId { get; set; }                  // foreign key
 
-        [ForeignKey(nameof(Course))]
+        [ForeignKey("Course")]
         [Required]
         public int courseId { get; set; }                   // foreign key
 
@@ -32,5 +32,6 @@ namespace UniversityManagmentSystem.Models
 
         public Student Student { get; set; } // Navigation property
 
+        public Course Course { get; set; } // Navigation property
     }
 }

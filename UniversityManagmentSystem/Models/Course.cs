@@ -44,5 +44,9 @@ namespace UniversityManagmentSystem.Models
 
 
         public List<Student> Students { get; set; } // Navigation property 
+
+
+        public List<Enrollment> Enrollment { get; set; } // Navigation property 
+ 
     }
 }
