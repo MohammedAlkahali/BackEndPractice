@@ -12,7 +12,7 @@ namespace UniversityManagmentSystem.Models
         [Required]
         public int enrollmentId { get; set; }               // System generated 
 
-        [ForeignKey(nameof(Student))]
+        [ForeignKey("Student")]
         [Required]
         public int studentId { get; set; }                  // foreign key
 
@@ -29,5 +29,8 @@ namespace UniversityManagmentSystem.Models
         [Required]
         [MaxLength(20)]
         public string status { get; set; } = "In Progress"; // Default value
+
+        public Student Student { get; set; } // Navigation property
+
     }
 }
