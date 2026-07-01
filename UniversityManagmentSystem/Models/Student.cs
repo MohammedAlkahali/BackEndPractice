@@ -37,5 +37,9 @@ namespace UniversityManagmentSystem.Models
 
         [Range(0.0, 4.0)]
         public decimal gpa { get; set; } = 0.0m;    // User Input
+
+
+        public List <Course> courses { get; set; } // Navigation property
+
     }
 }

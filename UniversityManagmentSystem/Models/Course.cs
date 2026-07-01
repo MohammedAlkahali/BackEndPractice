@@ -41,5 +41,8 @@ namespace UniversityManagmentSystem.Models
 
 
         public Instructor Instructor { get; set; } // Navigation property 
+
+
+        public List<Student> Students { get; set; } // Navigation property 
     }
 }
