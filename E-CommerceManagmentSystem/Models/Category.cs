@@ -21,5 +21,7 @@ namespace E_CommerceManagmentSystem.Models
 
         [MaxLength(300)]                                                    // Data annotation
         public string? imageUrl      { get; set; }   // User input
+
+        public List<Product> Products { get; set; }  // Navigation property
     }
 }

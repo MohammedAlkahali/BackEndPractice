@@ -11,8 +11,8 @@ namespace E_CommerceManagmentSystem.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required] // Data annotation 
         public int      orderId         { get; set; }   // System generated
 
-        [ForeignKey(nameof(User)), Required]                              // Data annotation
-        public int      userId          { get; set; }   // Foreign key
+        [ForeignKey("User"), Required]                              // Data annotation
+        public int      userId          { get; set; }   // Foreign key property
 
         [Required]                                                          // Data annotation
         public DateTime OrderDate       { get; set; }   // User input
@@ -28,5 +28,12 @@ namespace E_CommerceManagmentSystem.Models
 
         [Required, MaxLength(50)]                                           // Data annotation
         public string   paymentMethod   { get; set; }   // User input
+
+  
+        public User User { get; set; } // Navigation property 
+
+        [ForeignKey("Product")]
+        public int productId { get; set; } // Foreign key property 
+        public Product Product { get; set; } // Navigation property 
     }
 }

@@ -11,10 +11,10 @@ namespace E_CommerceManagmentSystem.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required] // data annotation
         public int      reviewId    { get; set; }   // System generated 
 
-        [ForeignKey(nameof(User)), Required]                                // data annotation
-        public int      userId      { get; set; }   // Foreign key
+        [ForeignKey("User"), Required]                                // data annotation
+        public int      userId      { get; set; }   // Foreign key property
 
-        [ForeignKey(nameof(Product))]                                       // data annotation
+        [ForeignKey("Product")]                                       // data annotation
         public int      productId   { get; set; }   // Foreign key
 
         [Required, Range(1,5)]                                              // data annotation
@@ -26,5 +26,10 @@ namespace E_CommerceManagmentSystem.Models
 
         [Required]                                                          // data annotation
         public DateTime reviewDate  { get; set; }   // User input
+
+
+        public User User { get; set; } // Navigation property
+
+        public Product Product { get; set; } // Navigation property 
     }
 }

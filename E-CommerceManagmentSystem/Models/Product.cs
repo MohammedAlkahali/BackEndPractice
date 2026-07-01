@@ -32,7 +32,7 @@ namespace E_CommerceManagmentSystem.Models
         public string?  imageUrl      { get; set; }       // User input 
 
 
-        [Required, ForeignKey (nameof (Category))]                          // data annotation
+        [Required, ForeignKey ("Category")]                          // data annotation
         public int      categoryId    { get; set; }       // User input 
 
 
@@ -41,5 +41,12 @@ namespace E_CommerceManagmentSystem.Models
 
 
         public bool     isAvailable { get; set; } = true; // Default value
+
+        public List<Order> Orders { get; set; }          // Navigation property
+
+
+        public Category Category { get; set; } // Navigation property
+
+        public List<Review> Reviews { get; set; }          // Navigation property
     }
 }
